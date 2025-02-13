@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 import resource
 import gradio as gr
@@ -23,8 +25,8 @@ if __name__ == "__main__":
         try:
             rkllm_model.release()
         except:
-            print("No model loaded! Continuing with initialization...")
-        # Initialize RKLLM model
+            print("Chua load model nào...")
+        # InitializeRKLLM model
         init_msg = "=========INITIALIZING==========="
         print(init_msg)
         sys.stdout.flush()
@@ -47,7 +49,7 @@ if __name__ == "__main__":
     # Create a Gradio interface
     with gr.Blocks(title="Chat with RKLLM") as chatRKLLM:
         available_models = available_models()
-        gr.Markdown("<div align='center'><font size='10'> Definitely Not Skynet </font></div>")
+        gr.Markdown("<div align='center'><font size='10'> Trò chuy?n cùng RKLLM </font></div>")
         with gr.Tabs():
             with gr.TabItem("Select Model"):
                 model_dropdown = gr.Dropdown(choices=available_models, label="Select Model", value="None", allow_custom_value=True)
@@ -55,10 +57,14 @@ if __name__ == "__main__":
                 model_dropdown.input(initialize_model, [model_dropdown], [statusBox])
             with gr.TabItem("Txt2Txt"):
                 txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages")
+                txt2txt.chatbot.height = "70vh"
+                txt2txt.chatbot.resizeable = True                
             with gr.TabItem("Txt2Mesh"):
                 with gr.Row():    
                     with gr.Column(scale=2):
                         txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages")
+                        txt2txt.chatbot.height = "70vh"
+                        txt2txt.chatbot.resizeable = True                        
                     with gr.Column(scale=2):
                         # Add the text box for 3D mesh input and button
                         mesh_input = gr.Textbox(

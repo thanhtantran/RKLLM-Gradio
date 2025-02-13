@@ -64,4 +64,20 @@ model_configs = {
             "gemma-2-9b-it-opt": {"filename": "gemma-2-9b-it-rk3588-w8a8-opt-1-hybrid-ratio-0.0.rkllm", "parameter_size": "9B"}
         }
     },
+    "DeepSeek-R1-Distill-Qwen": {
+        "base_config": {
+            "st_model_id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+            "max_context_len": 8192,
+            "max_new_tokens": 2048,
+            "top_k": 15,
+            "top_p": 0.8,
+            "temperature": 0.7,
+            "repeat_penalty": 1.00,
+            "frequency_penalty": 0.5,
+            "system_prompt": "You are DeepSeek. You are a helpful AI assistant."
+        },
+        "models": {
+            "DeepSeek-R1-Distill-Qwen": {"filename": "DeepSeek-R1-Distill-Qwen-1.5B_W8A8_RK3588.rkllm", "parameter_size": "1.5B"},
+        }
+    },        
 }
