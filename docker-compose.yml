@@ -1,0 +1,14 @@
+services:
+  rkllm_server:
+    image: jsntwdj/rkllm_chat:1.0.1
+    container_name: rkllm_chat
+    restart: unless-stopped
+    privileged: true
+    devices:
+      - /dev:/dev
+    volumes:
+      - ./models:/rkllm_server/model  # rkllm
+    ports:
+      - "8080:8080" # 
+    command: >
+      sh -c "python3 gradio_server.py --target_platform rk3588 --rkllm_model_path /rkllm_server/model/gemma-2-2b-it-rk3588-w8a8-opt-1-hybrid-ratio-0.0.rkllm" #
