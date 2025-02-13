@@ -80,56 +80,8 @@ To change back to 1.1.2:
 ![sword](assets/sword-w8a8_g512-opt-0-hybrid-1.0.png)
 ![pyramid](assets/pyramid-w8a8_g512-opt-0-hybrid-1.0.png)
 
+
 ## Limitations
-
-- I get matmul errors when using contexts that are larger than 4096. This occurs on both 1.1.1 and 1.1.2. Inference still completes, and I have gotten coherent output.
-
-```
-* Running on local URL:  http://0.0.0.0:8080
-
-To create a public link, set `share=True` in `launch()`.
-No model loaded! Continuing with initialization...
-=========INITIALIZING===========
-I rkllm: rkllm-runtime version: 1.1.2, rknpu driver version: 0.9.7, platform: RK3588
-
-RKLLM Model, internlm2_5-1_8b-chat-w8a8_g512-opt has been initialized successfully！
-==============================
-
-E RKNN: [00:45:12.110] meet unkown shape, op name: matmul_qkv_rkllm_spilt_1, shape: 64, 4160, 128
-2features matmul matmul run failed
-E RKNN: [00:45:12.110] meet unkown shape, op name: matmul_qkv_rkllm_spilt_2, shape: 64, 4160, 128
-2features matmul matmul run failed
-E RKNN: [00:45:12.125] meet unkown shape, op name: matmul_qk_rkllm_spilt_2, shape: 64, 128, 4160
-2features matmul matmul run failed
-E RKNN: [00:45:12.125] meet unkown shape, op name: matmul_qk_rkllm_spilt_1, shape: 64, 128, 4160
-
-...
-
-E RKNN: [00:45:13.315] meet unkown shape, op name: matmul_qk_rkllm_spilt_0, shape: 64, 128, 4224
-2features matmul matmul run failed
-E RKNN: [00:45:13.321] meet unkown shape, op name: matmul_qkv_rkllm_spilt_0, shape: 64, 4224, 128
-E RKNN: [00:45:13.321] meet unkown shape, op name: matmul_qkv_rkllm_spilt_1, shape: 64, 4224, 128
-2features matmul matmul run failed
-2features matmul matmul run failed
-
-...
-
-E RKNN: [00:45:13.546] meet unkown shape, op name: matmul_qk_rkllm_spilt_0, shape: 64, 128, 4288
-2features matmul matmul run failed
-E RKNN: [00:45:13.553] meet unkown shape, op name: matmul_qkv_rkllm_spilt_1, shape: 64, 4288, 128
-E RKNN: [00:45:13.553] meet unkown shape, op name: matmul_qkv_rkllm_spilt_2, shape: 64, 4288, 128
-2features matmul matmul run failed
-2features matmul matmul run failed
-
-...
-
---------------------------------------------------------------------------------------
- Stage         Total Time (ms)  Tokens    Time per Token (ms)      Tokens per Second       
---------------------------------------------------------------------------------------
- Prefill       48433.63         5052      9.59                     104.31                  
- Generate      3751388.33       8191      458.65                   2.18                    
---------------------------------------------------------------------------------------
-```
 
 - This is not a production-ready application. It cannot properly handle concurrency, or if users on the same network attempt to do things like load a model at the same time, or attempt to query the model simultaneously. 
 
