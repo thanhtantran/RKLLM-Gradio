@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # Create a Gradio interface
     with gr.Blocks(title="Chat with RKLLM") as chatRKLLM:
         available_models = available_models()
-        gr.Markdown("<div align='center'><font size='10'> Trò chuy?n cùng RKLLM </font></div>")
+        gr.Markdown("<div align='center'><font size='10'> Trò chuyen cùng RKLLM </font></div>")
         with gr.Tabs():
             with gr.TabItem("Select Model"):
                 model_dropdown = gr.Dropdown(choices=available_models, label="Select Model", value="None", allow_custom_value=True)
@@ -57,13 +57,13 @@ if __name__ == "__main__":
                 model_dropdown.input(initialize_model, [model_dropdown], [statusBox])
             with gr.TabItem("Txt2Txt"):
                 txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages")
-                txt2txt.chatbot.height = "70vh"
+                txt2txt.chatbot.height = "50vh"
                 txt2txt.chatbot.resizeable = True                
             with gr.TabItem("Txt2Mesh"):
                 with gr.Row():    
                     with gr.Column(scale=2):
                         txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages")
-                        txt2txt.chatbot.height = "70vh"
+                        txt2txt.chatbot.height = "50vh"
                         txt2txt.chatbot.resizeable = True                        
                     with gr.Column(scale=2):
                         # Add the text box for 3D mesh input and button
