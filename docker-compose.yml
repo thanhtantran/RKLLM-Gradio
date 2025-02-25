@@ -1,6 +1,6 @@
 services:
   rkllm_server:
-    image: thanhtantran/RKLLM-Gradio:0.1
+    image: thanhtantran/rkllm-gradio:0.1
     container_name: rkllm_chat
     restart: unless-stopped
     privileged: true
@@ -8,5 +8,6 @@ services:
       - /dev:/dev
     volumes:
       - ./models:/app/models  # model mount
+      - ./lib:/app/lib # lib mount
     ports:
       - "8080:8080" # 
